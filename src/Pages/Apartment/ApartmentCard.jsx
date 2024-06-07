@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ApartmentCard = () => {
+const ApartmentCard = ({apartment}) => {
     return (
         <div>
             <div>
@@ -8,7 +8,7 @@ const ApartmentCard = () => {
           <div
             className="w-full h-64 bg-gray-300 bg-center bg-cover rounded-lg shadow-md"
             style={{
-              backgroundImage: `url(https://images.unsplash.com/photo-1521903062400-b80f2cb8cb9d?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80)`,
+              backgroundImage: `url(${apartment.apartment_image})`,
             }}
           />
           <div className="w-56 -mt-10 overflow-hidden bg-white rounded-lg shadow-lg md:w-64 dark:bg-gray-800">
