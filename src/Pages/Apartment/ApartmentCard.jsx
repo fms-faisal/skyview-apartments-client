@@ -12,8 +12,16 @@ const ApartmentCard = ({apartment}) => {
             }}
           />
           <div className="w-56 -mt-10 overflow-hidden bg-white rounded-lg shadow-lg md:w-64 dark:bg-gray-800">
-            <h3 className="py-2 font-bold tracking-wide text-center text-gray-800 uppercase dark:text-white">B block, 2nd Floor</h3>
-            <div className="flex flex-col items-center justify-between px-3 py-2 bg-gray-200 dark:bg-gray-700">
+          <div className='text-center mt-2'>
+          <span className="px-3 py-1 text-xs text-black uppercase bg-gray-100 rounded-lg">
+  Apartment No: <span className='font-bold px-1'>{apartment.apartment_no}</span>
+</span>
+          </div>
+
+            <h3 className="py-2 font-bold tracking-wide text-center text-gray-800 uppercase dark:text-white">{apartment.block_name} block, Floor : {apartment.floor_no}</h3>
+            
+            <div className="flex flex-col items-center justify-between px-3 bg-gray-200 dark:bg-gray-700 rounded-md py-3">
+              
               <div className="flex items-center justify-between w-full">
                 <span className="font-bold text-gray-800 dark:text-gray-200">Rent:</span>
                 <span className="text-gray-800 bg-green-300 border-2 border-green-400 rounded-md  px-4 ">$1200</span> {/* Sample value */}
