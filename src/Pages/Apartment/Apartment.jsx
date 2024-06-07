@@ -1,28 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import ApartmentCard from "./ApartmentCard";
-
+import useApartments from "./../../Hooks/useApartments";
 const Apartment = () => {
-  const [apartments, setApartments] = useState([]);
+  // const [apartments, setApartments] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const apartmentsPerPage = 6;
 
-  useEffect(() => {
-    fetch("apartments.json")
-      .then((res) => res.json())
-      .then((data) => setApartments(data))
-      .catch((error) => console.error("Error fetching data:", error));
-  }, []);
+  const [apartments, loading] = useApartments();
+  // useEffect(() => {
+  //   fetch("apartments.json")
+  //     .then((res) => res.json())
+  //     .then((data) => setApartments(data))
+  //     .catch((error) => console.error("Error fetching data:", error));
+  // }, []);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
   const totalPages = Math.ceil(apartments.length / apartmentsPerPage);
-  const currentApartments = apartments.slice(
-    (currentPage - 1) * apartmentsPerPage,
-    currentPage * apartmentsPerPage
-  );
+  const currentApartments = apartments.slice((currentPage - 1) * apartmentsPerPage, currentPage * apartmentsPerPage);
 
   return (
     <div>
@@ -39,11 +37,7 @@ const Apartment = () => {
       <div className="flex justify-center my-10">
         <div className="btn-group">
           {[...Array(totalPages)].map((_, index) => (
-            <button
-              key={index + 1}
-              className={`btn ${currentPage === index + 1 ? 'btn-active' : ''}`}
-              onClick={() => handlePageChange(index + 1)}
-            >
+            <button key={index + 1} className={`btn ${currentPage === index + 1 ? "btn-active" : ""}`} onClick={() => handlePageChange(index + 1)}>
               {index + 1}
             </button>
           ))}
