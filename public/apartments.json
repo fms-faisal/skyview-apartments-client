@@ -1,0 +1,82 @@
+[
+  {
+    "apartment_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwJoyUxEzKHoNhmcmeu_D4vZemyfKT_H8eaw&s",
+    "floor_no": 1,
+    "block_name": "A",
+    "apartment_no": "101",
+    "rent": 1200,
+    "other_details": "Spacious living room, fully furnished, with balcony."
+  },
+  {
+    "apartment_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwJoyUxEzKHoNhmcmeu_D4vZemyfKT_H8eaw&s",
+    "floor_no": 2,
+    "block_name": "B",
+    "apartment_no": "201",
+    "rent": 1500,
+    "other_details": "Corner unit with great natural light, modern kitchen."
+  },
+  {
+    "apartment_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwJoyUxEzKHoNhmcmeu_D4vZemyfKT_H8eaw&s",
+    "floor_no": 1,
+    "block_name": "C",
+    "apartment_no": "102",
+    "rent": 1100,
+    "other_details": "Close to amenities, newly renovated bathroom."
+  },
+  {
+    "apartment_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwJoyUxEzKHoNhmcmeu_D4vZemyfKT_H8eaw&s",
+    "floor_no": 3,
+    "block_name": "A",
+    "apartment_no": "301",
+    "rent": 1800,
+    "other_details": "Penthouse suite with panoramic views of the city."
+  },
+  {
+    "apartment_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwJoyUxEzKHoNhmcmeu_D4vZemyfKT_H8eaw&s",
+    "floor_no": 2,
+    "block_name": "D",
+    "apartment_no": "204",
+    "rent": 1300,
+    "other_details": "Cozy studio layout, ideal for single occupancy."
+  },
+  {
+    "apartment_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwJoyUxEzKHoNhmcmeu_D4vZemyfKT_H8eaw&s",
+    "floor_no": 4,
+    "block_name": "B",
+    "apartment_no": "401",
+    "rent": 2000,
+    "other_details": "Duplex layout, with private rooftop terrace."
+  },
+  {
+    "apartment_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwJoyUxEzKHoNhmcmeu_D4vZemyfKT_H8eaw&s",
+    "floor_no": 1,
+    "block_name": "E",
+    "apartment_no": "103",
+    "rent": 1250,
+    "other_details": "Pet-friendly building, close to dog park."
+  },
+  {
+    "apartment_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwJoyUxEzKHoNhmcmeu_D4vZemyfKT_H8eaw&s",
+    "floor_no": 3,
+    "block_name": "C",
+    "apartment_no": "303",
+    "rent": 1700,
+    "other_details": "Fully renovated, with in-unit washer and dryer."
+  },
+  {
+    "apartment_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwJoyUxEzKHoNhmcmeu_D4vZemyfKT_H8eaw&s",
+    "floor_no": 2,
+    "block_name": "A",
+    "apartment_no": "202",
+    "rent": 1400,
+    "other_details": "Balcony overlooking the courtyard, fitness center access."
+  },
+  {
+    "apartment_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwJoyUxEzKHoNhmcmeu_D4vZemyfKT_H8eaw&s",
+    "floor_no": 4,
+    "block_name": "D",
+    "apartment_no": "402",
+    "rent": 1900,
+    "other_details": "High ceilings, natural wood finishes, luxury amenities."
+  }
+]
