@@ -1,17 +1,28 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import skyviewImage from "./../../../bannerImages/logo.jpeg";
 import googleLogo from "./../../../bannerImages/google-logo.svg";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const Login = () => {
+
+
+    const {signIn} = useContext(AuthContext)
     const handleLogin = (event) => {
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password)
+
+        signIn(email, password)
+        .then(result => {
+            const user = result.user;
+        })
     }
+
+
   return (
     <div>
       <Helmet>
@@ -88,14 +99,12 @@ const Login = () => {
                 className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50"
                 value="Sign In"
               />
-
-              <input type="text" />
             </div>
-
-            <div className="flex items-center justify-between mt-4">
+            <p className="text-center text-xs text-gray-600 uppercase dark:text-gray-800 my-2 mt-4">or</p>
+            <div className="flex items-center justify-between">
               <span className="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
 
-              <Link to="/singup">
+              <Link to="/signup">
                 <a href="#" className="text-xs text-gray-800 uppercase dark:text-gray-800 hover:underline">
                   <span className="font-bold">sign up</span>
                 </a>
