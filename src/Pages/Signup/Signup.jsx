@@ -7,8 +7,16 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import { useForm } from "react-hook-form";
 
 const Signup = () => {
+
+    const {createUser} = useContext(AuthContext);
     const { register, handleSubmit,formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
+    const onSubmit = data => {console.log(data);
+        createUser(data.email, data.password)
+        .then(result => {
+            const loggedUser = result.user;
+            console.log(loggedUser);
+        })
+    }
     return (
         <div>
           <Helmet>
