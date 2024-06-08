@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import skyviewImage from "./../../../bannerImages/logo.jpeg";
 import googleLogo from "./../../../bannerImages/google-logo.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
@@ -15,6 +15,7 @@ const Signup = () => {
     reset,
     formState: { errors },
   } = useForm();
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     try {
@@ -34,6 +35,7 @@ const Signup = () => {
         showConfirmButton: false,
         timer: 1500,
       });
+      navigate('/');
     } catch (error) {
       console.error("Error during signup", error);
       Swal.fire({
