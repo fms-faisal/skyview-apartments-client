@@ -12,7 +12,7 @@ const Signup = () => {
     return (
         <div>
           <Helmet>
-            <title>Skyview Apartments | Login</title>
+            <title>Skyview Apartments | signup</title>
           </Helmet>
     
           <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 lg:max-w-4xl my-10">
