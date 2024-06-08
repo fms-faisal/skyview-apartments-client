@@ -2,12 +2,16 @@ import React, { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import skyviewImage from "./../../../bannerImages/logo.jpeg";
 import googleLogo from "./../../../bannerImages/google-logo.svg";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -35,6 +39,7 @@ const Login = () => {
           text: error.message,
         });
       });
+    navigate(from, { replace: true });
   };
 
   return (
@@ -48,8 +53,7 @@ const Login = () => {
           className="hidden bg-cover bg-center lg:block rounded-md lg:w-1/2"
           style={{
             backgroundImage: `url(${skyviewImage})`,
-          }}
-        ></div>
+          }}></div>
 
         <div className="w-full px-6 py-8 md:px-8 lg:w-1/2">
           <div className="flex justify-center mx-auto">
@@ -60,8 +64,7 @@ const Login = () => {
 
           <a
             href="#"
-            className="flex items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
-          >
+            className="flex items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
             <div className="flex justify-around items-center">
               <div className="px-2 py-2">
                 <img className="h-6 w-6" src={googleLogo} alt="" />
@@ -123,9 +126,7 @@ const Login = () => {
               <span className="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
 
               <Link to="/signup">
-                <span className="text-xs text-gray-800 uppercase dark:text-gray-800 hover:underline font-bold">
-                  Sign Up
-                </span>
+                <span className="text-xs text-gray-800 uppercase dark:text-gray-800 hover:underline font-bold">Sign Up</span>
               </Link>
 
               <span className="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
