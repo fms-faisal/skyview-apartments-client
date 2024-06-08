@@ -4,24 +4,38 @@ import skyviewImage from "./../../../bannerImages/logo.jpeg";
 import googleLogo from "./../../../bannerImages/google-logo.svg";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
+  const { signIn } = useContext(AuthContext);
 
+  const handleLogin = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
 
-    const {signIn} = useContext(AuthContext)
-    const handleLogin = (event) => {
-        event.preventDefault();
-        const form = event.target;
-        const email = form.email.value;
-        const password = form.password.value;
-        console.log(email, password)
+    signIn(email, password)
+      .then((result) => {
+        const user = result.user;
 
-        signIn(email, password)
-        .then(result => {
-            const user = result.user;
-        })
-    }
-
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Login successful",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: error.message,
+        });
+      });
+  };
 
   return (
     <div>
@@ -34,7 +48,8 @@ const Login = () => {
           className="hidden bg-cover bg-center lg:block rounded-md lg:w-1/2"
           style={{
             backgroundImage: `url(${skyviewImage})`,
-          }}></div>
+          }}
+        ></div>
 
         <div className="w-full px-6 py-8 md:px-8 lg:w-1/2">
           <div className="flex justify-center mx-auto">
@@ -45,9 +60,10 @@ const Login = () => {
 
           <a
             href="#"
-            className="flex items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+            className="flex items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
+          >
             <div className="flex justify-around items-center">
-              <div className="px-2 py-2  ">
+              <div className="px-2 py-2">
                 <img className="h-6 w-6" src={googleLogo} alt="" />
               </div>
 
@@ -72,7 +88,8 @@ const Login = () => {
               <input
                 id="LoggingEmailAddress"
                 className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300"
-                type="email" name = "email"
+                type="email"
+                name="email"
               />
             </div>
 
@@ -89,7 +106,8 @@ const Login = () => {
               <input
                 id="loggingPassword"
                 className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300"
-                type="password" name = "password"
+                type="password"
+                name="password"
               />
             </div>
 
@@ -105,9 +123,9 @@ const Login = () => {
               <span className="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
 
               <Link to="/signup">
-                <a href="#" className="text-xs text-gray-800 uppercase dark:text-gray-800 hover:underline">
-                  <span className="font-bold">sign up</span>
-                </a>
+                <span className="text-xs text-gray-800 uppercase dark:text-gray-800 hover:underline font-bold">
+                  Sign Up
+                </span>
               </Link>
 
               <span className="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
