@@ -34,11 +34,11 @@ export const router = createBrowserRouter([
 
   {
     path: "dashboard",
-    element: <Dashboard></Dashboard>,
+    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children: [
       {
         path: "reservation",
-        element: <PrivateRoute><Reservation></Reservation></PrivateRoute>,
+        element: <Reservation></Reservation>,
       },
     ],
   },
