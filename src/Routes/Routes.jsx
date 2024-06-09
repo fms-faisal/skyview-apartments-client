@@ -6,6 +6,7 @@ import Login from "../Pages/Login/Login";
 import Signup from "../Pages/Signup/Signup";
 import Dashboard from "../Layout/Dashboard";
 import Reservation from "../Pages/Dashboard/Reservation/Reservation";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -37,7 +38,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "reservation",
-        element: <Reservation></Reservation>,
+        element: <PrivateRoute><Reservation></Reservation></PrivateRoute>,
       },
     ],
   },
