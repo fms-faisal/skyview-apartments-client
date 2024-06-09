@@ -1,17 +1,18 @@
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 
 const ApartmentCard = ({ apartment }) => {
 
   const { user } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const handleAgreement = (apartment) => {
     if(user && user.email){
 
     }else{
       Swal.fire({
-        title: "You are not logged in",
+        title: "You are not logged in!",
         text: "Please log in to reserve this apartment",
         icon: "warning",
         showCancelButton: true,
@@ -20,7 +21,7 @@ const ApartmentCard = ({ apartment }) => {
         confirmButtonText: "Yes, login"
       }).then((result) => {
         if (result.isConfirmed) {
-            navigate('/login');
+            navigate('/login', {state: {from : location}});
             // <Navigate to = '/login'></Navigate>
         }
       });
