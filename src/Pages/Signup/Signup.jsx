@@ -24,7 +24,7 @@ const Signup = () => {
       const loggedUser = result.user;
       console.log(loggedUser);
 
-      await updateUserProfile(data.name, data.photoUrl);
+      await updateUserProfile(data.name, data.photoURL);
       console.log("Profile updated successfully");
 
       reset();
@@ -101,17 +101,17 @@ const Signup = () => {
               {errors.name && <span className="text-red-400">name is required*</span>}
             </div>
             <div className="mt-4">
-              <label className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" htmlFor="photoUrl">
+              <label className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" htmlFor="photoURL">
                 Photo Url
               </label>
               <input
-                id="photoUrl"
-                {...register("photoUrl", { required: true })}
+                id="photoURL"
+                {...register("photoURL", { required: true })}
                 className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300"
                 type="text"
-                name="photoUrl"
+                name="photoURL"
               />{" "}
-              {errors.photoUrl && <span className="text-red-400">photo url is required*</span>}
+              {errors.photoURL && <span className="text-red-400">photo url is required*</span>}
             </div>
             <div className="mt-4">
               <label className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" htmlFor="LoggingEmailAddress">

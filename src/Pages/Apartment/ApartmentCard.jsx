@@ -1,6 +1,9 @@
 import React from 'react';
 
 const ApartmentCard = ({apartment}) => {
+  const handleAgreemnet = (apartment) => {
+    console.log(apartment);
+  }
     return (
         <div>
             <div>
@@ -37,7 +40,7 @@ const ApartmentCard = ({apartment}) => {
               <div className="flex items-center justify-between w-full">
                 <button
                   className="w-full py-2 mt-2 text-sm font-semibold text-white uppercase transition-colors duration-300 transform bg-gray-800 rounded hover:bg-gray-700 dark:hover:bg-gray-600 focus:bg-gray-700 dark:focus:bg-gray-600 focus:outline-none"
-                  onClick={() => console.log("Agreement button clicked")}>
+                  onClick={() => handleAgreemnet(apartment)}>
                   Agreement
                 </button>
               </div>
