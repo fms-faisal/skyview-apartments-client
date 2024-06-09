@@ -2,11 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { FaTrashAlt, FaUsers } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const AllUsers = () => {
   const axiosSecure = useAxiosSecure();
 
-  const { data: users = [] } = useQuery({
+  const { data: users = [], refetch } = useQuery({
     queryKey: ["allUsers"],
     queryFn: async () => {
       const res = await axiosSecure.get("/users");
@@ -14,13 +15,41 @@ const AllUsers = () => {
     },
   });
 
-  const handleDeleteUser = user => {
+  const handleDeleteUser = (user) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure
+          .delete(`/users/${user._id}`)
+          .then((response) => {
+            console.log(response);
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your reservation has been deleted.",
+              icon: "success",
+            });
+            refetch();
+          })
+          .catch((error) => {
+            console.error(error);
+            Swal.fire({
+              title: "Error",
+              text: "Failed to delete reservation.",
+              icon: "error",
+            });
+          });
+      }
+    });
+  };
 
-  }
-
-  const handleRole = (user) => {
-    
-  }
+  const handleRole = (user) => {};
   return (
     <div>
       <div className="flex justify-evenly my-4 ">
