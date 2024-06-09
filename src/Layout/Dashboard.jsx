@@ -1,6 +1,6 @@
 import React from "react";
 import { FaBook, FaBuilding, FaHome, FaUser } from "react-icons/fa";
-import { FaCalendar, FaPaypal } from "react-icons/fa6";
+import { FaCalendar, FaPaypal, FaPeopleGroup, FaPersonRifle } from "react-icons/fa6";
 import { NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
@@ -10,8 +10,8 @@ const Dashboard = () => {
       <div className="w-56 min-h-screen flex items-center border-r-2 border-gray-200 rounded-lg">
         <ul className="menu p-4">
           <li>
-            <NavLink to="/dashboard/userHome">
-                <FaHome></FaHome> User Home</NavLink>
+            <NavLink to="/dashboard/profile">
+                <FaUser></FaUser> Profile</NavLink>
           </li>
           <li>
             <NavLink to="/dashboard/reservation">

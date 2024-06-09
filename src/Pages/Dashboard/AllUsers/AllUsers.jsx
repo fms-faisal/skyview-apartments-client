@@ -54,6 +54,7 @@ const AllUsers = () => {
     .then(res => {
         console.log(res.data)
         if (res.data.modifiedCount > 0){
+            refetch();
             Swal.fire({
                 position: "top-end",
                 icon: "success",
@@ -89,9 +90,10 @@ const AllUsers = () => {
                 <td>{user.name}</td>
                 <td>{user.email}</td>
                 <td>
+                    {user.role === 'admin'? 'Admin' : 
                   <button onClick={() => handleMakeAdmin(user)}>
                     <FaUsers className="text-green-400 mr-4" />
-                  </button>
+                  </button>}
                 </td>
                 <td>
                   <button onClick={() => handleDeleteUser(user)}>
