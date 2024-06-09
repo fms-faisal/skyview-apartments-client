@@ -1,50 +1,90 @@
 import React from "react";
 import useReservation from "../../../Hooks/useReservation";
+import useAuth from "../../../Hooks/useAuth";
+import { FaTrashAlt } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const Reservation = () => {
+    const {user} = useAuth();
   const [reservation] = useReservation();
   console.log(reservation)
+  const handleDelete = (e) => {
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success"
+          });
+        }
+      });
+  }
   return (
-    <div className="flex h-full items-center justify-center">
-      <div className="max-w-2xl overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
-        <img
-          className="object-cover w-full h-64"
-          src="https://images.unsplash.com/photo-1550439062-609e1531270e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-          alt="Article"
-        />
-        <div className="p-6">
-          <div>
-            <span className="text-xs font-medium text-blue-600 uppercase dark:text-blue-400">Product</span>
-            <a
-              href="#"
-              className="block mt-2 text-xl font-semibold text-gray-800 transition-colors duration-300 transform dark:text-white hover:text-gray-600 hover:underline"
-              tabIndex="0"
-              role="link">
-              I Built A Successful Blog In One Year
-            </a>
-            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Molestie parturient et sem ipsum volutpat vel. Natoque sem et aliquam mauris
-              egestas quam volutpat viverra. In pretium nec senectus erat. Et malesuada lobortis.
-            </p>
-          </div>
-          <div className="mt-4">
-            <div className="flex items-center">
-              <div className="flex items-center">
-                <img
-                  className="object-cover h-10 rounded-full"
-                  src="https://images.unsplash.com/photo-1586287011575-a23134f797f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=48&q=60"
-                  alt="Avatar"
-                />
-                <a href="#" className="mx-2 font-semibold text-gray-700 dark:text-gray-200" tabIndex="0" role="link">
-                  Jone Doe
-                </a>
+    <>
+      
+            <div className="flex h-full items-center justify-center">
+            <div className="max-w-2xl overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
+              <img
+                className="object-cover w-full h-64"
+                src={reservation[0].apartment_image}
+                alt="Article"
+              />
+              <div className="p-6">
+                <div>
+                 <div className="flex flex-row justify-between">
+                 <span className="text-xs font-medium text-blue-600 uppercase dark:text-blue-400">Apartment No: {reservation[0].apartment_no}</span>
+                 <span className="text-xs font-medium text-blue-600 uppercase dark:text-blue-400"> Status: {reservation[0].status}</span>
+                 </div>
+                  <div className="flex flex-row justify-between items-center mt-2">
+                  <a
+                    href="#"
+                    className="block mt-2 text-xl font-semibold text-gray-800 transition-colors duration-300 transform dark:text-white hover:text-gray-600 hover:underline"
+                    tabIndex="0"
+                    role="link">
+                    Block {reservation[0].block_name}, Floor No {reservation[0].floor_no}
+                  </a>
+                  <button className="btn btn-sm">Rent: {reservation[0].rent}</button>
+                  </div>
+                  <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+                      {reservation[0].other_details}
+                  </p>
+                </div>
+                <div className="mt-4">
+                  
+                   <div className="flex flex-row justify-between items-center">
+                   <div className="flex items-center">
+                      <img
+                        className="object-cover h-10 rounded-full"
+                        src={user.photoURL}
+                        alt="Avatar"
+                      />
+                      <a href="#" className="mx-2 font-semibold text-gray-700 dark:text-gray-200" tabIndex="0" role="link">
+                        {reservation[0].name}
+                      </a>
+                    </div>
+                    <div>
+                        <button onClick={() => handleDelete(reservation[0]._id)}>
+                            <FaTrashAlt className="text-red-400 mr-4"></FaTrashAlt>
+                        </button>
+                    </div>
+                   </div>
+                   
+                 
+                </div>
               </div>
-              <span className="mx-1 text-xs text-gray-600 dark:text-gray-300">21 SEP 2015</span>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+        
+    
+    </>
   );
 };
 

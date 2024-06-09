@@ -5,7 +5,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useReservation from "../../Hooks/useReservation";
 
 const ApartmentCard = ({ apartment }) => {
-  const { apartment_image, floor_no, block_name, apartment_no, rent } = apartment;
+  const { apartment_image, floor_no, block_name, apartment_no, rent,other_details } = apartment;
   const { user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -23,6 +23,7 @@ const ApartmentCard = ({ apartment }) => {
         floor_no,
         block_name,
         rent,
+        other_details,
         status: "pending",
       };
 
