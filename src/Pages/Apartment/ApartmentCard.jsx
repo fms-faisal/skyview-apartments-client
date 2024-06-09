@@ -1,11 +1,31 @@
-import React, { useContext } from "react";
-import { AuthContext } from "../../Providers/AuthProvider";
+import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const ApartmentCard = ({ apartment }) => {
+
   const { user } = useAuth();
+  const navigate = useNavigate();
   const handleAgreement = (apartment) => {
-    console.log(apartment);
+    if(user && user.email){
+
+    }else{
+      Swal.fire({
+        title: "You are not logged in",
+        text: "Please log in to reserve this apartment",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, login"
+      }).then((result) => {
+        if (result.isConfirmed) {
+            navigate('/login');
+            // <Navigate to = '/login'></Navigate>
+        }
+      });
+      
+    }
   };
   return (
     <div>
