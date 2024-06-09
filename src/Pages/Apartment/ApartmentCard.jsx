@@ -3,14 +3,25 @@ import useAuth from "../../Hooks/useAuth";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 
 const ApartmentCard = ({ apartment }) => {
-
+  const { apartment_image, floor_no, block_name, apartment_no, rent, other_details } = apartment;
   const { user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const handleAgreement = (apartment) => {
-    if(user && user.email){
-
-    }else{
+    if (user && user.email) {
+      console.log(user.email, apartment);
+      const reserveItem = {
+        apartmentId: apartment._id,
+        email: user.email,
+        name: user.displayName,
+        apartment_no,
+        apartment_image,
+        floor_no,
+        block_name,
+        rent,
+        status: "pending",
+      };
+    } else {
       Swal.fire({
         title: "You are not logged in!",
         text: "Please log in to reserve this apartment",
@@ -18,14 +29,13 @@ const ApartmentCard = ({ apartment }) => {
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, login"
+        confirmButtonText: "Yes, login",
       }).then((result) => {
         if (result.isConfirmed) {
-            navigate('/login', {state: {from : location}});
-            // <Navigate to = '/login'></Navigate>
+          navigate("/login", { state: { from: location } });
+          // <Navigate to = '/login'></Navigate>
         }
       });
-      
     }
   };
   return (
