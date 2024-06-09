@@ -1,9 +1,10 @@
 import React from "react";
-import { FaBuilding, FaHome } from "react-icons/fa";
+import { FaBook, FaBuilding, FaHome, FaUser } from "react-icons/fa";
 import { FaCalendar, FaPaypal } from "react-icons/fa6";
 import { NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
+    const isAdmin = true;
   return (
     <div className="flex">
       <div className="w-56 min-h-screen flex items-center border-r-2 border-gray-200 rounded-lg">
@@ -20,6 +21,15 @@ const Dashboard = () => {
             <NavLink to="/dashboard/paymentHistory">
                 <FaPaypal></FaPaypal> Payment History</NavLink>
           </li>
+          <li>
+            <NavLink to="/dashboard/manageReservation">
+                <FaBook></FaBook> Manage Reservation</NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/allUsers">
+                <FaUser></FaUser> All Users</NavLink>
+          </li>
+
 
           <div className="divider"></div>
 

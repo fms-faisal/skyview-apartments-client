@@ -40,6 +40,7 @@ export const router = createBrowserRouter([
         path: "reservation",
         element: <Reservation></Reservation>,
       },
+
     ],
   },
 ]);
