@@ -6,6 +6,7 @@ import { Navigate, useLocation, useNavigate } from "react-router-dom";
 
 import axios from "axios";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useReservation from "../../Hooks/useReservation";
 
 const ApartmentCard = ({ apartment }) => {
   const { apartment_image, floor_no, block_name, apartment_no, rent, other_details } = apartment;
@@ -13,8 +14,9 @@ const ApartmentCard = ({ apartment }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const axiosSecure = useAxiosSecure();
+  const [,refetch]= useReservation()
   
-  const handleAgreement = (apartment) => {
+  const handleAgreement = () => {
     if (user && user.email) {
       console.log(user.email, apartment);
       const reserveItem = {
@@ -41,6 +43,7 @@ const ApartmentCard = ({ apartment }) => {
               showConfirmButton: false,
               timer: 1500
             });
+            refetch()
           }
       })
     } else {
@@ -97,7 +100,7 @@ const ApartmentCard = ({ apartment }) => {
               <div className="flex items-center justify-between w-full">
                 <button
                   className="w-full py-2 mt-2 text-sm font-semibold text-white uppercase transition-colors duration-300 transform bg-gray-800 rounded hover:bg-gray-700 dark:hover:bg-gray-600 focus:bg-gray-700 dark:focus:bg-gray-600 focus:outline-none"
-                  onClick={() => handleAgreement(apartment)}>
+                  onClick={() => handleAgreement}>
                   Agreement
                 </button>
               </div>

@@ -21,6 +21,9 @@ const Navbar = () => {
       <li>
         <Link to="/apartment">Apartment</Link>
       </li>
+      <li>
+        <Link to = "/dashboard/reservation">My Reservation</Link>
+      </li>
     </>
   );
   return (
@@ -72,7 +75,7 @@ const Navbar = () => {
                   </a>
                 </li>
                 <li>
-                  <a>Dashboard</a>
+                  <Link to = "/dashboard"><a>Dashboard</a></Link>
                 </li>
                 <li>
                   <a onClick={handleLogOut}>Logout</a>
