@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const Signup = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
@@ -16,6 +17,7 @@ const Signup = () => {
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
 
   const onSubmit = async (data) => {
     try {
@@ -26,17 +28,25 @@ const Signup = () => {
 
       await updateUserProfile(data.name, data.photoURL);
       console.log("Profile updated successfully");
-      console.log(data.name, data.photoURL )
+      console.log(data.name, data.photoURL);
 
-      reset();
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "User created successfully",
-        showConfirmButton: false,
-        timer: 1500,
+      const userInfo = {
+        name: data.name,
+        email: data.email,
+      };
+      axiosPublic.post("/users", userInfo).then((res) => {
+        if (res.data.insertedId) {
+          reset();
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "User created successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/");
+        }
       });
-      navigate('/');
     } catch (error) {
       console.error("Error during signup", error);
       Swal.fire({
