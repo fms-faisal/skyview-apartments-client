@@ -26,6 +26,7 @@ const Signup = () => {
 
       await updateUserProfile(data.name, data.photoURL);
       console.log("Profile updated successfully");
+      console.log(data.name, data.photoURL )
 
       reset();
       Swal.fire({

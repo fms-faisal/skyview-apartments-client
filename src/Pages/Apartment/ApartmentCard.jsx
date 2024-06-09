@@ -1,13 +1,19 @@
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
+
+
+
 import axios from "axios";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const ApartmentCard = ({ apartment }) => {
   const { apartment_image, floor_no, block_name, apartment_no, rent, other_details } = apartment;
   const { user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const axiosSecure = useAxiosSecure();
+  
   const handleAgreement = (apartment) => {
     if (user && user.email) {
       console.log(user.email, apartment);
@@ -22,10 +28,20 @@ const ApartmentCard = ({ apartment }) => {
         rent,
         status: "pending",
       };
+      console.log(reserveItem, user)
 
-      axios.post('http://localhost:5000/reservation', reserveItem)
+      axiosSecure.post('/reservation', reserveItem)
       .then((response) => {
           console.log(response.data)
+          if(response.data.insertedId){
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: `Apartment ${apartment_no} added to reservation`,
+              showConfirmButton: false,
+              timer: 1500
+            });
+          }
       })
     } else {
       Swal.fire({
