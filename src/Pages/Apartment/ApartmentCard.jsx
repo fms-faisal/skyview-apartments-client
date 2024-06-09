@@ -1,6 +1,7 @@
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const ApartmentCard = ({ apartment }) => {
   const { apartment_image, floor_no, block_name, apartment_no, rent, other_details } = apartment;
@@ -21,6 +22,11 @@ const ApartmentCard = ({ apartment }) => {
         rent,
         status: "pending",
       };
+
+      axios.post('http://localhost:5000/reservation', reserveItem)
+      .then((response) => {
+          console.log(response.data)
+      })
     } else {
       Swal.fire({
         title: "You are not logged in!",
