@@ -5,6 +5,7 @@ import googleLogo from "./../../../bannerImages/google-logo.svg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
@@ -62,17 +63,7 @@ const Login = () => {
 
           <p className="mt-3 text-xl text-center text-gray-600 dark:text-gray-200">Welcome back!</p>
 
-          <a
-            href="#"
-            className="flex items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <div className="flex justify-around items-center">
-              <div className="px-2 py-2">
-                <img className="h-6 w-6" src={googleLogo} alt="" />
-              </div>
-
-              <div className="w-5/6 px-4 py-3 font-bold text-center">Sign in with Google</div>
-            </div>
-          </a>
+          <SocialLogin></SocialLogin>
 
           <div className="flex items-center justify-between mt-4">
             <span className="w-1/5 border-b dark:border-gray-600 lg:w-1/4"></span>
