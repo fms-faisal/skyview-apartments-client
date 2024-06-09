@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useContext } from "react";
+import { AuthContext } from "../../Providers/AuthProvider";
+import useAuth from "../../Hooks/useAuth";
 
-const ApartmentCard = ({apartment}) => {
-  const handleAgreemnet = (apartment) => {
+const ApartmentCard = ({ apartment }) => {
+  const { user } = useAuth();
+  const handleAgreement = (apartment) => {
     console.log(apartment);
-  }
-    return (
-        <div>
-            <div>
+  };
+  return (
+    <div>
+      <div>
         <div className="flex flex-col items-center justify-center w-full max-w-sm mx-auto">
           <div
             className="w-full h-64 bg-gray-300 bg-center bg-cover rounded-lg shadow-md"
@@ -15,16 +18,17 @@ const ApartmentCard = ({apartment}) => {
             }}
           />
           <div className="w-56 -mt-10 overflow-hidden bg-white rounded-lg shadow-lg md:w-64 dark:bg-gray-800">
-          <div className='text-center mt-2'>
-          <span className="px-3 py-1 text-xs text-black uppercase bg-gray-100 rounded-lg">
-  Apartment No: <span className='font-bold px-1'>{apartment.apartment_no}</span>
-</span>
-          </div>
+            <div className="text-center mt-2">
+              <span className="px-3 py-1 text-xs text-black uppercase bg-gray-100 rounded-lg">
+                Apartment No: <span className="font-bold px-1">{apartment.apartment_no}</span>
+              </span>
+            </div>
 
-            <h3 className="py-2 font-bold tracking-wide text-center text-gray-800 uppercase dark:text-white">{apartment.block_name} block, Floor : {apartment.floor_no}</h3>
-            
+            <h3 className="py-2 font-bold tracking-wide text-center text-gray-800 uppercase dark:text-white">
+              {apartment.block_name} block, Floor : {apartment.floor_no}
+            </h3>
+
             <div className="flex flex-col items-center justify-between px-3 bg-gray-200 dark:bg-gray-700 rounded-md py-3">
-              
               <div className="flex items-center justify-between w-full">
                 <span className="font-bold text-gray-800 dark:text-gray-200">Rent:</span>
                 <span className="text-gray-800 bg-green-300 border-2 border-green-400 rounded-md  px-4 ">$1200</span> {/* Sample value */}
@@ -40,7 +44,7 @@ const ApartmentCard = ({apartment}) => {
               <div className="flex items-center justify-between w-full">
                 <button
                   className="w-full py-2 mt-2 text-sm font-semibold text-white uppercase transition-colors duration-300 transform bg-gray-800 rounded hover:bg-gray-700 dark:hover:bg-gray-600 focus:bg-gray-700 dark:focus:bg-gray-600 focus:outline-none"
-                  onClick={() => handleAgreemnet(apartment)}>
+                  onClick={() => handleAgreement(apartment)}>
                   Agreement
                 </button>
               </div>
@@ -48,8 +52,8 @@ const ApartmentCard = ({apartment}) => {
           </div>
         </div>
       </div>
-        </div>
-    );
+    </div>
+  );
 };
 
 export default ApartmentCard;
