@@ -6,13 +6,10 @@ import CheckoutForm from './CheckoutForm';
 
 
 
-const stripePromise = loadStripe ('import.meta.env.VITE_Payment_Gateway_PK')
+const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_PK);
 const Payment = () => {
     return (
         <div>
-            <div>
-                Payment
-            </div>
             <div>
                 <Elements stripe={stripePromise}>
                     <CheckoutForm></CheckoutForm>
