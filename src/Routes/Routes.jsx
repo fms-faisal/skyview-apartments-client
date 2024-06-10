@@ -11,6 +11,7 @@ import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import MyProfile from "../Pages/Dashboard/MyProfile/MyProfile";
 import MakeAnnouncement from "../Pages/Dashboard/Announcement/MakeAnnouncement";
 import AdminRoute from "./AdminRoute";
+import Announcements from "../Pages/Dashboard/Announcement/Announcements";
 
 export const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ export const router = createBrowserRouter([
       {
         path: 'profile',
         element: <MyProfile></MyProfile>
+      },
+      {
+        path: 'announcements',
+        element: <Announcements></Announcements>
       },
 
       //admin only routes
