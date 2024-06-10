@@ -9,6 +9,7 @@ import Reservation from "../Pages/Dashboard/Reservation/Reservation";
 import PrivateRoute from "./PrivateRoute";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import MyProfile from "../Pages/Dashboard/MyProfile/MyProfile";
+import MakeAnnouncement from "../Pages/Dashboard/Announcement/MakeAnnouncement";
 
 export const router = createBrowserRouter([
   {
@@ -38,6 +39,7 @@ export const router = createBrowserRouter([
     path: "dashboard",
     element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children: [
+      //normal user routes
       {
         path: "reservation",
         element: <Reservation></Reservation>,
@@ -50,6 +52,13 @@ export const router = createBrowserRouter([
         path: 'profile',
         element: <MyProfile></MyProfile>
       },
+
+      //admin only routes
+
+      {
+        path: 'makeAnnouncement',
+        element: <MakeAnnouncement></MakeAnnouncement>
+      }
 
     ],
   },

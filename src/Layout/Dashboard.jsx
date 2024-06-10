@@ -4,15 +4,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../Hooks/useAdmin";
 
 const Dashboard = () => {
-  const { isAdmin, isLoading, isError } = useAdmin();
-
-  if (isLoading) {
-    return <div>Loading...</div>; // Show a loading state
-  }
-
-  if (isError) {
-    return <div>Error loading admin status.</div>; // Show an error state
-  }
+    const [isAdmin] = useAdmin();
 
   return (
     <div className="flex">
