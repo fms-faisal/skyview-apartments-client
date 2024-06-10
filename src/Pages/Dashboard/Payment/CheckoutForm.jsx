@@ -1,9 +1,30 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import useReservation from "../../../Hooks/useReservation";
+import useAuth from "../../../Hooks/useAuth";
 
 const CheckoutForm = () => {
+    const [error, setError] = useState('')
+    const [clientSecret, setClientSecret] = useState('')
     const stripe = useStripe()
+    const [transactionId, setTransactionId] = useState('');
     const elements = useElements();
+    const axiosSecure = useAxiosSecure()
+    const [reservation] = useReservation()
+    const {user} = useAuth()
+    const price = reservation[0].rent
+    console.log(price)
+    useEffect(() => {
+             axiosSecure.post ('/create-payment-intent', {price: price})
+             .then(res => {
+                console.log(res.data.clientSecret)
+                setClientSecret(res.data.clientSecret)
+             })
+    }, [axiosSecure, price])
+
+
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -22,9 +43,31 @@ const CheckoutForm = () => {
 
     if(error){
         console.log('payment error', error)
+        setError(error.message);
     }
     else{
         console.log('payment method', paymentMethod)
+        setError('');
+    }
+    //confirm payment
+    const {paymentIntent, error: confirmError} = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+            card: card,
+            billing_details: {
+                email: user?.email || 'anonymous',
+                name: user?.displayName  || 'anonymous'
+            }
+        }
+    })
+    if (confirmError){
+        console.log('confirm error')
+    }
+    else {
+        console.log('payment intent', paymentIntent)
+        if(paymentIntent.status === 'succeeded'){
+            console.log('transaction id', paymentIntent.id)
+            setTransactionId(paymentIntent.id)
+        }
     }
   };
   return (
@@ -49,6 +92,10 @@ const CheckoutForm = () => {
       <button className="btn btn-sm btn-wide bg-green-300 " type="submit" disabled={!stripe}>
         Pay
       </button>
+      <p className="text-red-400">{error}</p>
+      {
+        transactionId && <p className = "text-green-600"> Your transaction id: {transactionId}</p>
+      }
       </div>
     </form>
   );
