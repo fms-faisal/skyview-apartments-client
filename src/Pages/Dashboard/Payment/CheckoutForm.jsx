@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useReservation from "../../../Hooks/useReservation";
 import useAuth from "../../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const CheckoutForm = () => {
     const [error, setError] = useState('')
@@ -13,7 +14,7 @@ const CheckoutForm = () => {
     const axiosSecure = useAxiosSecure()
     const [reservation] = useReservation()
     const {user} = useAuth()
-    const price = reservation[0].rent
+    const price = reservation[0]?.rent || 0;
     console.log(price)
     useEffect(() => {
              axiosSecure.post ('/create-payment-intent', {price: price})
@@ -67,6 +68,29 @@ const CheckoutForm = () => {
         if(paymentIntent.status === 'succeeded'){
             console.log('transaction id', paymentIntent.id)
             setTransactionId(paymentIntent.id)
+
+            const payment = {
+                email: user.email,
+                price: price,
+                transactionId: paymentIntent.id,
+                data: new Date(),
+                reservationId: reservation.map(item => item._id ), 
+                apartmentId: reservation.map(item => item.apartmentId),
+                status: 'pending'
+
+            }
+            const res = await axiosSecure.post('/payments', payment)
+            console.log('payment saved', res);
+            if (res.data?.paymentResult.insertedId){
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Payment completed successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+            }
+
         }
     }
   };

@@ -13,6 +13,7 @@ import MakeAnnouncement from "../Pages/Dashboard/Announcement/MakeAnnouncement";
 import AdminRoute from "./AdminRoute";
 import Announcements from "../Pages/Dashboard/Announcement/Announcements";
 import Payment from "../Pages/Dashboard/Payment/Payment";
+import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 
 export const router = createBrowserRouter([
   {
@@ -59,6 +60,10 @@ export const router = createBrowserRouter([
       {
         path: 'announcements',
         element: <Announcements></Announcements>
+      },
+      {
+        path: 'paymentHistory',
+        element: <PaymentHistory></PaymentHistory>
       },
 
       //admin only routes
