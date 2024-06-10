@@ -4,7 +4,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../Hooks/useAdmin";
 
 const Dashboard = () => {
-    const [isAdmin] = useAdmin();
+  const [isAdmin] = useAdmin();
 
   return (
     <div className="flex">
@@ -52,22 +52,23 @@ const Dashboard = () => {
               </li>
               <li>
                 <NavLink to="/dashboard/makePayment">
-                  <FaMoneyBill />Make Payment
+                  <FaMoneyBill />
+                  Make Payment
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/dashboard/announcements">
-                  <FaMicrophone />Announcements
+                  <FaMicrophone />
+                  Announcements
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/paymentHistory">
+                  <FaPaypal /> Payment History
                 </NavLink>
               </li>
             </>
           )}
-
-          <li>
-            <NavLink to="/dashboard/paymentHistory">
-              <FaPaypal /> Payment History
-            </NavLink>
-          </li>
 
           <div className="divider"></div>
 

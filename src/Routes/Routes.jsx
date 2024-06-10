@@ -10,6 +10,7 @@ import PrivateRoute from "./PrivateRoute";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import MyProfile from "../Pages/Dashboard/MyProfile/MyProfile";
 import MakeAnnouncement from "../Pages/Dashboard/Announcement/MakeAnnouncement";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -44,10 +45,7 @@ export const router = createBrowserRouter([
         path: "reservation",
         element: <Reservation></Reservation>,
       },
-      {
-        path: 'allUsers',
-        element: <AllUsers></AllUsers>
-      },
+      
       {
         path: 'profile',
         element: <MyProfile></MyProfile>
@@ -57,9 +55,12 @@ export const router = createBrowserRouter([
 
       {
         path: 'makeAnnouncement',
-        element: <MakeAnnouncement></MakeAnnouncement>
-      }
-
+        element: <AdminRoute><MakeAnnouncement></MakeAnnouncement></AdminRoute>
+      },
+      {
+        path: 'allUsers',
+        element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
+      },
     ],
   },
 ]);
