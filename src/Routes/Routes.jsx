@@ -15,6 +15,7 @@ import Announcements from "../Pages/Dashboard/Announcement/Announcements";
 import Payment from "../Pages/Dashboard/Payment/Payment";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 import AgreementRequests from "../Pages/Dashboard/AgreementRequests/AgreementRequests";
+import AdminProfile from "../Pages/Dashboard/AdminProfile/AdminProfile";
 
 export const router = createBrowserRouter([
   {
@@ -80,6 +81,10 @@ export const router = createBrowserRouter([
       {
         path: 'manageReservation',
         element: <AgreementRequests></AgreementRequests>
+      },
+      {
+        path: 'adminProfile',
+        element: <AdminProfile></AdminProfile>
       }
     ],
   },

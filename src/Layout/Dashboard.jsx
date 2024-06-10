@@ -32,11 +32,11 @@ const Dashboard = () => {
                   <FaMicrophone /> Make Announcement
                 </NavLink>
               </li>
-              <li>
+              {/* <li>
                 <NavLink to="/dashboard/cupons">
                   <FaMoneyBill /> Manage Coupons
                 </NavLink>
-              </li>
+              </li> */}
             </>
           ) : (
             <>
