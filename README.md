@@ -62,11 +62,11 @@ The system is designed to be responsive for all devices, including mobile, table
 - **Error Handling**: Mechanisms to handle potential errors and exceptions.
 
 ## **Live Demo**
-[[Building Management System Live Site]((https://skyviewapartments-c882f.web.app/))]
+[[[Building Management System Live Site](())]](https://skyviewapartments-c882f.web.app/)
 
 ## **Repository Links**
-- **Client Side GitHub Repository**: [Client Repository](https://github.com/programming-hero-web-course1/b9a12-client-side-Faisal778/edit/main/README.md)
-- **Server Side GitHub Repository**: [Server Repository](#)
+- **Client Side GitHub Repository**: [Client Repository]([https://github.com/programming-hero-web-course1/b9a12-client-side-Faisal778/edit/main/README.md](https://github.com/programming-hero-web-course1/b9a12-client-side-Faisal778))
+- **Server Side GitHub Repository**: [Server Repository](https://github.com/programming-hero-web-course1/b9a12-server-side-Faisal778)
 
 ## **Admin Credentials**
 - **Admin Email**: bane17@gmail.com
