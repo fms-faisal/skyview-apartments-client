@@ -1,10 +1,11 @@
 import React from "react";
 import useReservation from "../../../Hooks/useReservation";
 import useAuth from "../../../Hooks/useAuth";
-import { FaTrashAlt } from "react-icons/fa";
+import { FaPaypal, FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import NullReservation from "../../../components/NullReservation";
+import { Link } from "react-router-dom";
 
 const Reservation = () => {
   const { user } = useAuth();
@@ -51,7 +52,7 @@ const Reservation = () => {
   }
 
   return (
-    <div className="flex h-full items-center justify-center">
+    <div className="flex flex-col h-full items-center justify-center">
       <div className="max-w-2xl overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
         <img
           className="object-cover w-full h-64"
@@ -109,6 +110,7 @@ const Reservation = () => {
           </div>
         </div>
       </div>
+      <div><Link to = '/dashboard/payment'><button className="btn mt-4 bg-green-300"><FaPaypal></FaPaypal> Pay Now</button></Link></div>
     </div>
   );
 };

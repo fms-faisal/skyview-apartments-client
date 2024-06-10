@@ -12,6 +12,7 @@ import MyProfile from "../Pages/Dashboard/MyProfile/MyProfile";
 import MakeAnnouncement from "../Pages/Dashboard/Announcement/MakeAnnouncement";
 import AdminRoute from "./AdminRoute";
 import Announcements from "../Pages/Dashboard/Announcement/Announcements";
+import Payment from "../Pages/Dashboard/Payment/Payment";
 
 export const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ export const router = createBrowserRouter([
       {
         path: "reservation",
         element: <Reservation></Reservation>,
+      },
+      {
+        path: 'payment',
+        element: <Payment></Payment>
       },
       
       {
