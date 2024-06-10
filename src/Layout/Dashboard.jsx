@@ -1,11 +1,19 @@
 import React from "react";
-import { FaBook, FaBuilding, FaHome, FaUser } from "react-icons/fa";
-import { FaCalendar, FaPaypal, FaPeopleGroup, FaPersonRifle } from "react-icons/fa6";
+import { FaBook, FaBuilding, FaHome, FaMicrophone, FaMoneyBill, FaUser, FaCalendar, FaPaypal } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../Hooks/useAdmin";
 
 const Dashboard = () => {
-  const isAdmin = useAdmin();
+  const { isAdmin, isLoading, isError } = useAdmin();
+
+  if (isLoading) {
+    return <div>Loading...</div>; // Show a loading state
+  }
+
+  if (isError) {
+    return <div>Error loading admin status.</div>; // Show an error state
+  }
+
   return (
     <div className="flex">
       <div className="w-56 min-h-screen flex items-center border-r-2 border-gray-200 rounded-lg">
@@ -14,19 +22,27 @@ const Dashboard = () => {
             <>
               <li>
                 <NavLink to="/dashboard/adminProfile">
-                  <FaUser></FaUser>Admin Profile
+                  <FaUser /> Admin Profile
                 </NavLink>
               </li>
-
               <li>
                 <NavLink to="/dashboard/manageReservation">
-                  <FaBook></FaBook> Agreement Requests
+                  <FaBook /> Agreement Requests
                 </NavLink>
               </li>
-
               <li>
                 <NavLink to="/dashboard/allUsers">
-                  <FaUser></FaUser>Manage Members
+                  <FaUser /> Manage Members
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/makeAnnouncement">
+                  <FaMicrophone /> Make Announcement
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/cupons">
+                  <FaMoneyBill /> Manage Coupons
                 </NavLink>
               </li>
             </>
@@ -34,13 +50,22 @@ const Dashboard = () => {
             <>
               <li>
                 <NavLink to="/dashboard/userProfile">
-                  <FaUser></FaUser>User Profile
+                  <FaUser /> User Profile
                 </NavLink>
               </li>
-
               <li>
                 <NavLink to="/dashboard/reservation">
-                  <FaCalendar></FaCalendar> My reservation
+                  <FaCalendar /> My Reservations
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/makePayment">
+                  <FaMoneyBill />Make Payment
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/announcements">
+                  <FaMicrophone />Announcements
                 </NavLink>
               </li>
             </>
@@ -48,7 +73,7 @@ const Dashboard = () => {
 
           <li>
             <NavLink to="/dashboard/paymentHistory">
-              <FaPaypal></FaPaypal> Payment History
+              <FaPaypal /> Payment History
             </NavLink>
           </li>
 
@@ -56,18 +81,18 @@ const Dashboard = () => {
 
           <li>
             <NavLink to="/">
-              <FaHome></FaHome>Home
+              <FaHome /> Home
             </NavLink>
           </li>
           <li>
             <NavLink to="/apartment">
-              <FaBuilding></FaBuilding> Apartments
+              <FaBuilding /> Apartments
             </NavLink>
           </li>
         </ul>
       </div>
       <div className="flex-1">
-        <Outlet></Outlet>
+        <Outlet />
       </div>
     </div>
   );
