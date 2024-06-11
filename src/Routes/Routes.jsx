@@ -16,6 +16,7 @@ import Payment from "../Pages/Dashboard/Payment/Payment";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 import AgreementRequests from "../Pages/Dashboard/AgreementRequests/AgreementRequests";
 import AdminProfile from "../Pages/Dashboard/AdminProfile/AdminProfile";
+import ManageCupons from "../Pages/Dashboard/ManageCupons.jsx/ManageCupons";
 
 export const router = createBrowserRouter([
   {
@@ -85,6 +86,10 @@ export const router = createBrowserRouter([
       {
         path: 'adminProfile',
         element: <AdminProfile></AdminProfile>
+      },
+      {
+        path:'cupons',
+        element: <AdminRoute><ManageCupons></ManageCupons></AdminRoute>
       }
     ],
   },

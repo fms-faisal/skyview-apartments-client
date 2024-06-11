@@ -4,7 +4,7 @@ const useApartments = () => {
   const [apartments, setApartments] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetch("http://localhost:5000/apartments")
+    fetch("https://skyview-apartmets-server.vercel.app/apartments")
       .then((res) => res.json())
       .then((data) => {
         setApartments(data);

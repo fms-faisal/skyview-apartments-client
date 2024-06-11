@@ -6,6 +6,7 @@ import OurFacilities from './OurFacilities';
 import SwimmingPool from './SwimmingPool';
 import Gym from './Gym';
 import SimpleMap from './SimpleMap';
+import DIrection from './DIrection';
 
 
 const Home = () => {
@@ -23,7 +24,8 @@ const Home = () => {
            <OurFacilities></OurFacilities>
            <SwimmingPool></SwimmingPool>
            <Gym></Gym>
-           <SimpleMap></SimpleMap>
+           {/* <SimpleMap></SimpleMap> */}
+           <DIrection></DIrection>
         </div>
     );
 };

@@ -32,7 +32,7 @@ const MakeAnnouncement = () => {
 
   };
   return (
-    <div className="flex justify-center items-center text-center h-full">
+    <div className="flex justify-center items-center mt-16 text-center h-full">
         <div className="flex flex-col justify-center items-center p-4 bg-gray-50 rounded-lg ">
       <h1 className="text-center p-10 font-bold text-3xl">Make an Announcement</h1>
       <form onSubmit={handleSubmit(onSubmit)}>

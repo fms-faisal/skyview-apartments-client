@@ -13,19 +13,22 @@ const ApartmentCard = ({ apartment }) => {
   const [, refetch] = useReservation();
 
   const handleAgreement = async (apartment) => {
-    if (user && user.email) {
-      const reserveItem = {
-        apartmentId: apartment._id,
-        email: user.email,
-        name: user.displayName,
-        apartment_no,
-        apartment_image,
-        floor_no,
-        block_name,
-        rent,
-        other_details,
-        status: "pending",
-      };
+  if (user && user.email) {
+    const requestedDate = new Date(); 
+    const reserveItem = {
+      apartmentId: apartment._id,
+      email: user.email,
+      name: user.displayName,
+      photoURL: user.photoURL,
+      apartment_no,
+      apartment_image,
+      floor_no,
+      block_name,
+      rent,
+      other_details,
+      status: "pending",
+      requested_date: requestedDate.toISOString(), 
+    };
 
       try {
         const response = await axiosSecure.post('/reservation', reserveItem);

@@ -1,15 +1,25 @@
-import React from "react";
-import { FaBook, FaBuilding, FaHome, FaMicrophone, FaMoneyBill, FaUser, FaCalendar, FaPaypal } from "react-icons/fa";
+import React, { useState } from "react";
+import { FaBook, FaBuilding, FaHome, FaMicrophone, FaMoneyBill, FaUser, FaCalendar, FaPaypal, FaBars, FaTimes } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../Hooks/useAdmin";
+import useMember from "../Hooks/useMember"; 
 
 const Dashboard = () => {
   const [isAdmin] = useAdmin();
+  const [isMember] = useMember();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
 
   return (
-    <div className="flex">
-      <div className="w-56 min-h-screen flex items-center border-r-2 border-gray-200 rounded-lg">
-        <ul className="menu p-4">
+    <div className="flex flex-col md:flex-row">
+      <button className="md:hidden p-4" onClick={toggleSidebar}>
+        {sidebarOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+      </button>
+      <div className={`w-full md:w-56 max-h-screen flex flex-col md:flex-row items-center mt-32 border-r-2 border-gray-200 rounded-lg ${sidebarOpen ? 'block' : 'hidden'} md:block`}>
+        <ul className="menu p-4 w-full">
           {isAdmin ? (
             <>
               <li>
@@ -32,13 +42,13 @@ const Dashboard = () => {
                   <FaMicrophone /> Make Announcement
                 </NavLink>
               </li>
-              {/* <li>
+              <li>
                 <NavLink to="/dashboard/cupons">
                   <FaMoneyBill /> Manage Coupons
                 </NavLink>
-              </li> */}
+              </li>
             </>
-          ) : (
+          ) : isMember ? (
             <>
               <li>
                 <NavLink to="/dashboard/userProfile">
@@ -52,19 +62,30 @@ const Dashboard = () => {
               </li>
               <li>
                 <NavLink to="/dashboard/payment">
-                  <FaMoneyBill />
-                  Make Payment
+                  <FaMoneyBill /> Make Payment
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/dashboard/announcements">
-                  <FaMicrophone />
-                  Announcements
+                  <FaMicrophone /> Announcements
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/dashboard/paymentHistory">
                   <FaPaypal /> Payment History
+                </NavLink>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <NavLink to="/dashboard/userProfile">
+                  <FaUser /> User Profile
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/announcements">
+                  <FaMicrophone /> Announcements
                 </NavLink>
               </li>
             </>

@@ -27,20 +27,21 @@ const AllUsers = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axiosSecure
-          .delete(`/users/${user._id}`)
-          .then((response) => {
+         .patch(`/users/user/${user.email}`)
+         .then((response) => {
             console.log(response);
+            refetch();
             Swal.fire({
-              title: "Deleted!",
-              text: "Your reservation has been deleted.",
+              title: "Updated!",
+              text: "User role has been updated.",
               icon: "success",
             });
           })
-          .catch((error) => {
+         .catch((error) => {
             console.error(error);
             Swal.fire({
               title: "Error",
-              text: "Failed to delete reservation.",
+              text: "Failed to update user role.",
               icon: "error",
             });
           });
@@ -66,7 +67,7 @@ const AllUsers = () => {
   };
   return (
     <div>
-      <div className="flex justify-evenly my-4 ">
+      <div className="flex justify-evenly my-4 mt-10">
         <h2 className="text-3xl">All Users</h2>
         <h2 className="text-3xl">Total Users : {users.length}</h2>
       </div>
@@ -78,7 +79,7 @@ const AllUsers = () => {
               <th></th>
               <th>Name</th>
               <th>Email</th>
-              <th>Role</th>
+              <th>Role/Make Admin</th>
               <th>Action</th>
             </tr>
           </thead>

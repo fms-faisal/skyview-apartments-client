@@ -6,12 +6,16 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import NullReservation from "../../../components/NullReservation";
 import { Link } from "react-router-dom";
+import useMember from "../../../Hooks/useMember";
 
 const Reservation = () => {
   const { user } = useAuth();
   const [reservation, refetch] = useReservation();
   const axiosSecure = useAxiosSecure();
+  const [isMember] = useMember();
+  console.log(isMember)
 
+  isMember && console.log(' member', isMember); 
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -31,7 +35,7 @@ const Reservation = () => {
               text: "Your reservation has been deleted.",
               icon: "success"
             });
-            refetch()
+            refetch();
           })
           .catch((error) => {
             console.error(error);
@@ -45,72 +49,88 @@ const Reservation = () => {
     });
   };
 
- 
-  if (reservation.length === 0) {
-   
-    return  <NullReservation></NullReservation>; 
+  // Filter reservations by user email
+  const userReservations = reservation.filter(res => res.email === user.email);
+
+  if (userReservations.length === 0) {
+    return <NullReservation />;
   }
+
+
 
   return (
     <div className="flex flex-col h-full items-center justify-center">
-      <div className="max-w-2xl overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
-        <img
-          className="object-cover w-full h-64"
-          src={reservation[0].apartment_image}
-          alt="Apartment"
-        />
-        <div className="p-6">
-          <div>
-            <div className="flex flex-row justify-between">
-              <span className="text-xs font-medium text-blue-600 uppercase dark:text-blue-400">
-                Apartment No: {reservation[0].apartment_no}
-              </span>
-              <span className="text-xs font-medium text-blue-600 uppercase dark:text-blue-400">
-                Status: {reservation[0].status}
-              </span>
-            </div>
-            <div className="flex flex-row justify-between items-center mt-2">
-              <a
-                href="#"
-                className="block mt-2 text-xl font-semibold text-gray-800 transition-colors duration-300 transform dark:text-white hover:text-gray-600 hover:underline"
-                tabIndex="0"
-                role="link">
-                Block {reservation[0].block_name}, Floor No {reservation[0].floor_no}
-              </a>
-              <button className="btn btn-sm">
-                Rent: {reservation[0].rent}
-              </button>
-            </div>
-            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-              {reservation[0].other_details}
-            </p>
-          </div>
-          <div className="mt-4">
-            <div className="flex flex-row justify-between items-center">
-              <div className="flex items-center">
-                <img
-                  className="object-cover h-10 rounded-full"
-                  src={user.photoURL}
-                  alt="Avatar"
-                />
+      {userReservations.map(res => (
+        <div key={res._id} className="max-w-2xl overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800 mb-4">
+          <img
+            className="object-cover w-full h-64"
+            src={res.apartment_image}
+            alt="Apartment"
+          />
+          <div className="p-6">
+            <div>
+              <div className="flex flex-row justify-between">
+                <span className="text-xs font-medium text-blue-600 uppercase dark:text-blue-400">
+                  Apartment No: {res.apartment_no}
+                </span>
+                <span className="text-xs font-medium text-blue-600 uppercase dark:text-blue-400">
+                  Status: {res.status}
+                </span>
+              </div>
+              <div className="flex flex-row justify-between items-center mt-2">
                 <a
                   href="#"
-                  className="mx-2 font-semibold text-gray-700 dark:text-gray-200"
+                  className="block mt-2 text-xl font-semibold text-gray-800 transition-colors duration-300 transform dark:text-white hover:text-gray-600 hover:underline"
                   tabIndex="0"
                   role="link">
-                  {reservation[0].name}
+                  Block {res.block_name}, Floor No {res.floor_no}
                 </a>
-              </div>
-              <div>
-                <button onClick={() => handleDelete(reservation[0]._id)}>
-                  <FaTrashAlt className="text-red-400 mr-4" />
+                <button className="btn btn-sm">
+                  Rent: {res.rent}
                 </button>
+              </div>
+              <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+                {res.other_details}
+              </p>
+            </div>
+            <div className="mt-4">
+              <div className="flex flex-row justify-between items-center">
+                <div className="flex items-center">
+                  <img
+                    className="object-cover h-10 rounded-full"
+                    src={user.photoURL}
+                    alt="Avatar"
+                  />
+                  <a
+                    href="#"
+                    className="mx-2 font-semibold text-gray-700 dark:text-gray-200"
+                    tabIndex="0"
+                    role="link">
+                    {res.name}
+                  </a>
+                </div>
+                <div>
+                  <button onClick={() => handleDelete(res._id)}>
+                    <FaTrashAlt className="text-red-400 mr-4" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div><Link to = '/dashboard/payment'><button className="btn mt-4 bg-green-300"><FaPaypal></FaPaypal> Pay Now</button></Link></div>
+      ))}
+      {/* Render message and hide button if user is not a member */}
+      {!isMember && (
+        <p className="mt-4 text-red-500">Your reservation has not been accepted yet. Please wait.</p>
+      )}
+      {/* Render Pay Now button only if user is a member */}
+      {isMember && (
+        <Link to='/dashboard/payment'>
+          <button className="btn mt-4 bg-green-300">
+            <FaPaypal /> Pay Now
+          </button>
+        </Link>
+      )}
     </div>
   );
 };

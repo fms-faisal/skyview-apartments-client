@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import logo from "./../../../../bannerImages/logo.jpeg";
 import AuthProvider, { AuthContext } from "../../../Providers/AuthProvider";
+import useAdmin from "../../../Hooks/useAdmin";
+import useMember from "../../../Hooks/useMember";
 const Navbar = () => {
   const {user, logOut} = useContext(AuthContext)
   console.log(user)
@@ -10,6 +12,8 @@ const Navbar = () => {
     .then(() => {})
     .catch((error) => console.error(error));
   }
+  const [isAdmin] = useAdmin();
+  const [isMember] = useMember();
   const navOptions = (
     <>
       <li>
@@ -17,15 +21,23 @@ const Navbar = () => {
           <a>Home</a>
         </Link>
       </li>
-
+  
       <li>
         <Link to="/apartment">Apartment</Link>
       </li>
-      <li>
-        <Link to = "/dashboard/reservation">My Reservation</Link>
-      </li>
+  
+      {isAdmin? (
+        <li>
+          <Link to="/dashboard/adminProfile">Dashboard</Link>
+        </li>
+      ) : (
+        <li>
+          <Link to="/dashboard/reservation">My Reservation</Link>
+        </li>
+      )}
     </>
   );
+
   return (
 
     <div>
@@ -75,8 +87,10 @@ const Navbar = () => {
                   </a>
                 </li>
                 <li>
-                  <Link to = "/dashboard"><a>Dashboard</a></Link>
-                </li>
+  <Link to={isAdmin? "/dashboard/adminProfile" : isMember? "/dashboard/userProfile" : "/dashboard/userProfile"}>
+    <a>Dashboard</a>
+  </Link>
+</li>
                 <li>
                   <a onClick={handleLogOut}>Logout</a>
                 </li>

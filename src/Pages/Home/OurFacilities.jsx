@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const OurFacilities = () => {
   return (
     <div>
-      <div className="hero min-h-screen bg-white p-20">
+      <div className="hero  min-h-[500px] py-10  bg-white ">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <img
             src="https://www.shutterstock.com/image-photo/eu-modern-european-complex-apartment-600nw-1445600369.jpg"
