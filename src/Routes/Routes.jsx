@@ -81,11 +81,11 @@ export const router = createBrowserRouter([
       },
       {
         path: 'manageReservation',
-        element: <AgreementRequests></AgreementRequests>
+        element: <AdminRoute><AgreementRequests></AgreementRequests></AdminRoute>
       },
       {
         path: 'adminProfile',
-        element: <AdminProfile></AdminProfile>
+        element: <AdminRoute><AdminProfile></AdminProfile></AdminRoute>
       },
       {
         path:'cupons',
