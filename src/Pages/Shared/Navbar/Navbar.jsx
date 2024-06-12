@@ -7,6 +7,7 @@ import useMember from "../../../Hooks/useMember";
 const Navbar = () => {
   const {user, logOut} = useContext(AuthContext)
   console.log(user)
+  console.log(user)
   const handleLogOut = () => {
     logOut()
     .then(() => {})
@@ -74,11 +75,18 @@ const Navbar = () => {
           </>: <>
             <div className="dropdown dropdown-end">
               <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                <div className="w-10 rounded-full">
-                  <img alt="photo of user" src={
-                    user?.photoURL? user.photoURL : "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-                  } />
-                </div>
+              <div className="w-10 rounded-full">
+  <img 
+    alt="photo of user" 
+    src={
+      user?.photoURL ? user.photoURL : "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+    }
+    onError={(e) => {
+      console.error('Error loading user photo, falling back to default image');
+      e.target.src = "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg";
+    }}
+  />
+</div>
               </div>
               <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                 <li>
