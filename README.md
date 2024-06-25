@@ -74,13 +74,12 @@ The system is designed to be responsive for all devices, including mobile, table
 [Building Management System Live Site](https://skyviewapartments-c882f.web.app/)
 
 ## **Repository Links**
-- **Client Side GitHub Repository**: [Client Repository](https://github.com/programming-hero-web-course1/b9a12-client-side-Faisal778)
-- **Server Side GitHub Repository**: [Server Repository](https://github.com/programming-hero-web-course1/b9a12-server-side-Faisal778)
+- **Server Side GitHub Repository**: [Server Repository]([https://github.com/programming-hero-web-course1/b9a12-server-side-Faisal778](https://github.com/Faisal778/skyview-apartments-server))
 
 ## **Admin Credentials**
-- **Admin Email**: bane17@gmail.com
-- **Admin Password**: banebane
-
+- **Admin Email**: admin@gmail.com
+- **Admin Password**: admin12345
+- please refresh once after logging in as admin* (I will fix this issue in the next update).
+ 
 ---
 
-This version now includes the usage of TanStack Query, Axios, and React Slider to accurately reflect the technologies and features implemented in the project.
