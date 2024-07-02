@@ -26,12 +26,12 @@
 # **Completed Project: Building Management System**
 
 ## **Overview**
-The **Building Management System (BMS)** is a robust web application designed to manage various aspects of a building, including user and admin functionalities. The system is built using modern web development technologies and includes features such as user authentication, CRUD operations, and responsive design.
+The **Skyview Apartments** is a robust web application designed to manage various aspects of a building, including user and admin functionalities. The system is built using modern web development technologies and includes features such as user authentication, CRUD operations, and responsive design.
 
 ## **Key Features**
 
 ### **User Dashboard**
-The user dashboard provides a personalized interface for users to view their profile, make payments, and access announcements. It includes features such as:
+The user dashboard provides a personalized interface for users to view their profiles, make payments, and access announcements. It includes features such as:
 - **Profile Information**: Displays name, image, and email.
 - **Agreement Details**: Shows agreement accept date and rented apartment details.
 - **Payment History**: Includes search functionality for payment records.
