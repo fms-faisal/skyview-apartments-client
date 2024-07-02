@@ -1,4 +1,25 @@
 
+## To Run the Project Locally, Follow These Steps
+
+1. Clone the repository
+
+    ```
+    git clone https://github.com/fms-faisal/skyview-apartments-client.git
+    ```
+2. Navigate to the project directory
+    ```
+    cd skyview-apartments-client
+    ```
+
+3. Install dependencies
+    ```
+     npm install
+    ```
+
+4. Run the development server
+   ```
+     npm run dev
+   ```
 
 ---
 
@@ -31,7 +52,7 @@ The admin dashboard provides a comprehensive interface for administrators to man
 ### **Payment System**
 The system includes a payment feature that allows users to make payments and apply coupons. It includes:
 - **Payment Form**: Fields for member email, floor, block name, apartment number, rent, and month.
-- **Coupon Application**: Validates and applies coupons.
+
 
 ### **Responsive Design**
 The system is designed to be responsive for all devices, including mobile, tablet, and desktop views.
@@ -60,21 +81,12 @@ The system is designed to be responsive for all devices, including mobile, table
 ### **Authentication**
 - **JWT (JSON Web Tokens)**: Used for user authentication and stores the token in local storage.
 
-### **UI/UX**
-- **Responsive Design**: Ensures the system is accessible on various devices.
-- **UI Components**: Enhances the user experience.
-
-
-## **Additional Features**
-- **Animation**: Includes animations using Framer Motion, a popular animation library.
-- **Error Handling**: Mechanisms to handle potential errors and exceptions.
-- **Pagination**: Facilitates easy navigation through apartment listings.
 
 ## **Live Demo**
 [Building Management System Live Site](https://skyviewapartments-c882f.web.app/)
 
 ## **Repository Links**
-- **Server Side GitHub Repository**: [Server Repository]([https://github.com/programming-hero-web-course1/b9a12-server-side-Faisal778](https://github.com/Faisal778/skyview-apartments-server))
+- **Server Side GitHub Repository**: [Server Repository](https://github.com/Faisal778/skyview-apartments-server)
 
 ## **Admin Credentials**
 - **Admin Email**: admin@gmail.com
