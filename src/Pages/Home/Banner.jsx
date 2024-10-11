@@ -17,11 +17,12 @@ const Banner = () => {
     fade: true,
     cssEase: "linear",
   };
+
   return (
-    <div>
+    <div className="min-w-[500px] min-h-[450px] rounded-lg " >
       <Slider {...settings}>
         <div>
-          <img className="h-[500px] w-full object-cover rounded-lg" src={photo2} alt="" />
+          <img className="h-[500px]  w-full object-cover rounded-lg" src={photo2} alt="" />
         </div>
         <div>
           <img className="h-[500px] w-full object-cover  rounded-lg" src={photo3} alt="" />
