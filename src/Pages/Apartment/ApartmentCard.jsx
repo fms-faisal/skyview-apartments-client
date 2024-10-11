@@ -105,7 +105,7 @@ const ApartmentCard = ({ apartment }) => {
         <div className="flex flex-col items-center justify-between px-3 bg-gray-200 dark:bg-gray-700 rounded-md py-3">
           <div className="flex items-center justify-between w-full">
             <span className="font-bold text-gray-800 dark:text-gray-200">Rent:</span>
-            <span className="text-gray-800 bg-green-300 border-2 border-green-400 rounded-md px-4">{rent}</span>
+            <span className="text-gray-800 bg-green-300 border-2 border-green-400 rounded-md px-4">${rent}</span>
           </div>
           <div className="flex items-center justify-between w-full">
             <button
