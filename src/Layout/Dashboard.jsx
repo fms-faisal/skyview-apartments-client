@@ -3,6 +3,7 @@ import { FaBook, FaBuilding, FaHome, FaMicrophone, FaMoneyBill, FaUser, FaCalend
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../Hooks/useAdmin";
 import useMember from "../Hooks/useMember"; 
+import Navbar from "../Pages/Shared/Navbar/Navbar";
 
 const Dashboard = () => {
   const [isAdmin] = useAdmin();
@@ -14,11 +15,13 @@ const Dashboard = () => {
   };
 
   return (
+    <>
+    <Navbar></Navbar>
     <div className="flex flex-col md:flex-row">
       <button className="md:hidden p-4" onClick={toggleSidebar}>
         {sidebarOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
       </button>
-      <div className={`w-full md:w-56 max-h-screen flex flex-col md:flex-row items-center mt-32 border-r-2 border-gray-200 rounded-lg ${sidebarOpen ? 'block' : 'hidden'} md:block`}>
+      <div className={`w-full md:w-56 max-h-screen flex flex-col md:flex-row items-center mt-24 border-r-2 border-gray-200 rounded-lg ${sidebarOpen ? 'block' : 'hidden'} md:block`}>
         <ul className="menu p-4 w-full">
           {isAdmin ? (
             <>
@@ -109,6 +112,7 @@ const Dashboard = () => {
         <Outlet />
       </div>
     </div>
+    </>
   );
 };
 

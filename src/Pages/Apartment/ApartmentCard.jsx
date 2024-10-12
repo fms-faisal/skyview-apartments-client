@@ -5,68 +5,82 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useReservation from "../../Hooks/useReservation";
 
 const ApartmentCard = ({ apartment }) => {
-  const { apartment_image, floor_no, block_name, apartment_no, rent,other_details } = apartment;
+  const { apartment_image, floor_no, block_name, apartment_no, rent, other_details } = apartment;
   const { user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const axiosSecure = useAxiosSecure();
-  const [, refetch] = useReservation();
+  const [reservations, refetch] = useReservation(); // Fetch reservations
 
-  const handleAgreement = async (apartment) => {
-  if (user && user.email) {
-    const requestedDate = new Date(); 
-    const reserveItem = {
-      apartmentId: apartment._id,
-      email: user.email,
-      name: user.displayName,
-      photoURL: user.photoURL,
-      apartment_no,
-      apartment_image,
-      floor_no,
-      block_name,
-      rent,
-      other_details,
-      status: "pending",
-      requested_date: requestedDate.toISOString(), 
-    };
+  // Check if this apartment has been reserved by any user
+  const isReserved = reservations.some((reservation) => reservation.apartmentId === apartment._id && reservation.status === "checked");
+
+  const handleAgreement = async () => {
+    if (user && user.email) {
+      if (isReserved) {
+        Swal.fire({
+          position: "top-end",
+          icon: "warning",
+          title: `Apartment ${apartment_no} is already reserved by someone else.`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        return; // Stop the reservation process if the apartment is reserved
+      }
+
+      const requestedDate = new Date();
+      const reserveItem = {
+        apartmentId: apartment._id,
+        email: user.email,
+        name: user.displayName,
+        photoURL: user.photoURL,
+        apartment_no,
+        apartment_image,
+        floor_no,
+        block_name,
+        rent,
+        other_details,
+        status: "pending",
+        requested_date: requestedDate.toISOString(),
+      };
 
       try {
-        const response = await axiosSecure.post('/reservation', reserveItem);
+        const response = await axiosSecure.post("/reservation", reserveItem);
 
         if (response.status === 201 && response.data.insertedId) {
           Swal.fire({
-            position: 'top-end',
-            icon: 'success',
+            position: "top-end",
+            icon: "success",
             title: `Apartment ${apartment_no} added to reservation`,
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,
           });
           refetch(); // Refetch reservations if needed
         } else {
           Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: 'You have already applied for one apartment.',
+            position: "top-end",
+            icon: "error",
+            title: "You have already applied for one apartment.",
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,
           });
         }
       } catch (error) {
         if (error.response && error.response.status === 400) {
           Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: 'You can apply for only one apartment.',
+            position: "top-end",
+            icon: "error",
+            title: "You can apply for only one apartment.",
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,
           });
         } else {
           Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: 'An error occurred. Please try again later.',
+            position: "top-end",
+            icon: "error",
+            title: "An error occurred. Please try again later.",
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,
           });
         }
       }
@@ -89,10 +103,7 @@ const ApartmentCard = ({ apartment }) => {
 
   return (
     <div className="flex flex-col items-center justify-center w-full max-w-sm mx-auto">
-      <div
-        className="w-full h-64 bg-gray-300 bg-center bg-cover rounded-lg shadow-md"
-        style={{ backgroundImage: `url(${apartment_image})` }}
-      />
+      <div className="w-full h-64 bg-gray-300 bg-center bg-cover rounded-lg shadow-md" style={{ backgroundImage: `url(${apartment_image})` }} />
       <div className="w-56 -mt-10 overflow-hidden bg-white rounded-lg shadow-lg md:w-64 dark:bg-gray-800">
         <div className="text-center mt-2">
           <span className="px-3 py-1 text-xs text-black uppercase bg-gray-100 rounded-lg">
@@ -110,9 +121,9 @@ const ApartmentCard = ({ apartment }) => {
           <div className="flex items-center justify-between w-full">
             <button
               className="w-full py-2 mt-2 text-sm font-semibold text-white uppercase transition-colors duration-300 transform bg-gray-800 rounded hover:bg-gray-700 dark:hover:bg-gray-600 focus:bg-gray-700 dark:focus:bg-gray-600 focus:outline-none"
-              onClick={() => handleAgreement(apartment)}
-            >
-              Agreement
+              disabled={isReserved} // Disable button if already reserved
+              onClick={handleAgreement}>
+              {isReserved ? "Reserved" : "Agreement"}
             </button>
           </div>
         </div>
