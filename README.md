@@ -21,14 +21,35 @@
      npm run dev
    ```
 
+5. Replace environmental variables
+
+   Create **.env.local** file and add the following environment variables
+   ```
+    VITE_API_URL='https://your-server-link.com'  # Replace with server link
+   ```
+
+   Firebase configuration
+   ```
+    VITE_APIKEY='YOUR_API_KEY'
+    VITE_AUTHDOMAIN='YOUR_AUTH_DOMAIN'
+    VITE_PROJECTID='YOUR_PROJECT_ID'
+    VITE_STORAGEBUCKET='YOUR_STORAGE_BUCKET'
+    VITE_MESSAGINGSENDERID='YOUR_MESSAGING_SENDER_ID'
+    VITE_APPID='YOUR_APP_ID'
+   ```
+
 ---
 
-# **Completed Project: Building Management System**
+# **Skyview Apartments: Building Management System**
 
 ## **Overview**
-The **Skyview Apartments** is a robust web application designed to manage various aspects of a building, including user and admin functionalities. The system is built using modern web development technologies and includes features such as user authentication, CRUD operations, and responsive design.
+**Skyview Apartments** is a web application for managing apartment rentals. It allows users to apply for apartments, with administrators able to accept or reject applications and manage user roles. Each apartment is available to one renter at a time, and the app integrates Stripe for secure payments. Built with DaisyUI, TailwindCSS, JavaScript, React, Firebase, Axios, JWT, Express, and MongoDB, it offers a responsive user experience.
 
 ## **Key Features**
+- **Exclusive Apartment Availability**: Each apartment is assigned to only one renter at a time, ensuring a fair rental process.
+- **Application Management**: Users can apply for apartments, and administrators have the ability to accept or reject these applications.
+- **User Role Management**: Administrators can change user roles between user, member, and admin as needed for better management.
+- **Secure Payments**: Integrated Stripe for secure credit card payments, simplifying the rental transaction process.
 
 ### **User Dashboard**
 The user dashboard provides a personalized interface for users to view their profiles, make payments, and access announcements. It includes features such as:
@@ -91,7 +112,7 @@ The system is designed to be responsive for all devices, including mobile, table
 ## **Admin Credentials**
 - **Admin Email**: admin@gmail.com
 - **Admin Password**: admin12345
-- please refresh once after logging in as admin* (I will fix this issue in the next update).
+
  
 ---
 
